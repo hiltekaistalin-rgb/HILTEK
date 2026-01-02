@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact Us | HILTEK</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Header -->
+<header>
+    <div class="container header-flex">
+        <div class="logo-area">
+            <img src="images/logo.png" alt="HILTEK Logo" class="logo-img">
+            <span class="logo-text">HILTEK</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- Main Content -->
+<main>
+    <section class="section contact-section">
+        <div class="container contact-grid">
+            
+            <!-- Contact Info -->
+            <div class="contact-info">
+                <div class="info-box">
+                    <h3>Contact</h3>
+                    <p>📞 94426 92814</p>
+                    <p>📧 hiltekaiandrobotics@gmail.com</p>
+                </div>
+                <div class="info-box">
+                    <h3>Address</h3>
+                    <p>St. Xavier’s Campus, Chunkankadai,<br>Nagercoil, Tamil Nadu - 629003</p>
+                </div>
+                <div class="info-box">
+                    <h3>Schedule</h3>
+                    <p>7.5 Hours / 6 Days Open</p>
+                    <p>Office: 9:00 AM – 4:30 PM</p>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="contact-form">
+                <h3>Ready to Get Started?</h3>
+                <p>Contact us for AI, Robotics & IoT solutions.</p>
+
+                <form id="contactForm">
+                    <input type="text" name="Name" placeholder="Name" required>
+                    <input type="email" name="Email" placeholder="Email" required>
+                    <input type="text" name="Phone" placeholder="Phone">
+                    <input type="text" name="Subject" placeholder="Subject">
+                    <textarea name="Message" placeholder="Type your message" required></textarea>
+                    <button type="submit">Send Message</button>
+                </form>
+                <p id="statusMessage"></p>
+            </div>
+
+        </div>
+    </section>
+</main>
+
+<!-- Footer -->
+<footer>
+    <p>© 2025 Hiltek Center for AI and Robotics</p>
+</footer>
+
+<!-- Form Submission Script -->
+<script>
+const form = document.getElementById("contactForm");
+const status = document.getElementById("statusMessage");
+
+form.addEventListener("submit", e => {
+    e.preventDefault();
+    status.style.color = "black";
+    status.innerText = "Sending message...";
+
+    fetch("https://script.google.com/macros/s/AKfycbyndaWRpc4aQj-_Y6uVAFPt_CKgQMJBTGRqWwX8Jv3MQJoTCJOgC0Id59Wm2rQxRMmX9g/exec", {
+        method: "POST",
+        body: new FormData(form)
+    })
+    .then(response => {
+        status.style.color = "green";
+        status.innerText = "Message sent successfully!";
+        form.reset();
+    })
+    .catch(error => {
+        status.style.color = "red";
+        status.innerText = "Error sending message. Try again!";
+    });
+});
+</script>
+
+</body>
+</html>
